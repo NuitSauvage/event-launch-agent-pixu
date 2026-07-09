@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Event Launch Agent",
+  "version": "0.1.0",
+  "description": "Quick prompt launcher for Event Launch Agent.",
+  "action": {
+    "default_title": "Event Launch Agent",
+    "default_popup": "popup.html"
+  },
+  "permissions": ["tabs"]
+}

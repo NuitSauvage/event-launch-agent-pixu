@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Event Launch Agent</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="assistant-intake prompt-first" aria-label="AI intake prompt">
+      <div class="assistant-face" aria-hidden="true">
+        <span class="face-eye"></span>
+        <span class="face-eye"></span>
+        <span id="voiceMouth" class="face-mouth"></span>
+        <span class="face-sprout"></span>
+      </div>
+      <div class="assistant-body">
+        <p class="eyebrow">Talk to Pixu</p>
+        <h3 id="promptQuestion">What event should we launch?</h3>
+        <textarea
+          id="briefPrompt"
+          rows="3"
+          placeholder="Example: Friendly AWS Builder Loft event in San Francisco for engineers and founders about Codex, AI agents, and cloud workflows. Free evening event for 30 people."
+        ></textarea>
+        <div class="assistant-actions">
+          <button id="analyzeBrief" class="primary-action" type="button">Continue</button>
+          <button id="listenBrief" class="secondary-action" type="button">Start Voice Chat</button>
+          <button id="stopVoice" class="secondary-action ghost" type="button">Stop</button>
+        </div>
+        <div id="voiceStatus" class="voice-status">Type an answer and press Enter, or use voice.</div>
+        <div id="assistantReply" class="assistant-reply"></div>
+        <div id="conversationLog" class="conversation-log"></div>
+        <div id="followupQuestions" class="followups"></div>
+      </div>
+    </section>
+
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Event questionnaire">
+        <div class="brand-block">
+          <p class="eyebrow">Event planner</p>
+          <h1>Event Launch Agent</h1>
+          <p>Describe an event idea, then get a launch plan.</p>
+        </div>
+
+        <details class="advanced-details">
+          <summary>Advanced details</summary>
+          <form id="profileForm" class="profile-form">
+            <label>
+              Organizer type
+              <select id="organizerType"></select>
+            </label>
+
+            <label>
+              Venue type
+              <select id="venueType"></select>
+            </label>
+
+            <label>
+              City
+              <input id="city" type="text" value="San Francisco" />
+            </label>
+
+            <fieldset>
+              <legend>Domain</legend>
+              <div id="domainOptions" class="check-grid"></div>
+            </fieldset>
+
+            <label>
+              Goal
+              <select id="goal"></select>
+            </label>
+
+            <fieldset>
+              <legend>Target audience</legend>
+              <div id="audienceOptions" class="check-grid"></div>
+            </fieldset>
+
+            <div class="two-col">
+              <label>
+                Budget
+                <select id="budget"></select>
+              </label>
+
+              <label>
+                Duration
+                <select id="duration"></select>
+              </label>
+            </div>
+
+            <label>
+              Platform
+              <select id="platform"></select>
+            </label>
+
+            <label>
+              Tone
+              <select id="tone"></select>
+            </label>
+
+            <label>
+              Expected attendance
+              <input id="expectedAttendance" type="number" min="1" value="30" />
+            </label>
+
+            <label>
+              Organizer name
+              <input id="organizerName" type="text" value="AMS CG / AWS Builder Community" />
+            </label>
+
+            <label>
+              Address
+              <input id="address" type="text" value="San Francisco, CA" />
+            </label>
+
+            <label>
+              Timezone
+              <input id="timezone" type="text" value="America/Los_Angeles" />
+            </label>
+
+            <button class="primary-action" type="submit">Update Plan</button>
+          </form>
+        </details>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Selected idea</p>
+            <h2 id="selectedTitle">Build with AI Agents: Codex, AWS & Practical Workflows</h2>
+          </div>
+        </header>
+
+        <nav class="tabs" aria-label="Main tabs">
+          <button class="tab active" data-tab="recommendations">Ideas</button>
+          <button class="tab" data-tab="package">Plan</button>
+          <button class="tab" data-tab="posts">Posts</button>
+          <button class="tab" data-tab="payloads">Drafts</button>
+          <button class="tab" data-tab="pitch">Pitch</button>
+        </nav>
+
+        <section id="recommendations" class="tab-panel active">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Pick one</p>
+              <h3>Event ideas</h3>
+            </div>
+            <label class="select-event">
+              Select event
+              <select id="eventSelector"></select>
+            </label>
+          </div>
+          <h4>Best ideas</h4>
+          <div id="currentTable" class="table-wrap"></div>
+          <h4>More formats</h4>
+          <div id="evergreenTable" class="table-wrap"></div>
+        </section>
+
+        <section id="package" class="tab-panel">
+          <div id="packageView"></div>
+        </section>
+
+        <section id="posts" class="tab-panel">
+          <h3>1-month launch plan</h3>
+          <div id="monthlyLaunchPlan" class="launch-plan"></div>
+          <div class="dual-grid">
+            <div>
+              <h3>Standard launch timeline</h3>
+              <div id="standardCalendar" class="timeline"></div>
+            </div>
+            <div>
+              <h3>Urgent compressed timeline</h3>
+              <div id="urgentCalendar" class="timeline"></div>
+            </div>
+          </div>
+          <h3>Social posts and reminders</h3>
+          <div id="postsView" class="copy-grid"></div>
+        </section>
+
+        <section id="payloads" class="tab-panel">
+          <div class="notice warning">
+            Draft payloads only. Nothing is published from this demo.
+          </div>
+          <h3>Drafts</h3>
+          <div id="payloadView" class="payload-stack"></div>
+        </section>
+
+        <section id="pitch" class="tab-panel">
+          <div id="pitchView"></div>
+        </section>
+      </main>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
